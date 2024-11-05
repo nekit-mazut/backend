@@ -1,0 +1,230 @@
+1. Спецификация для SiteViewSet
+1.1. Список всех сайтов пользователя (именно пользователя от которого делается запрос)
+Метод: GET
+URL: /api/sites/
+Описание: Получение списка всех сайтов текущего пользователя.
+Ответ:
+Статус 200 OK
+Формат ответа:
+json
+[
+  {
+    "id": 1,
+    "name": "My First Site",
+    "created_at": "2024-01-01T12:00:00Z",
+    "user": {
+      "id": 1,
+      "email": "user@example.com"
+    }
+  },
+  ...
+]
+1.2. Создание нового сайта
+Метод: POST
+URL: /api/sites/
+Описание: Создание нового сайта для текущего пользователя.
+Тело запроса:
+json
+{
+  "name": "New Site"
+}
+Ответ:
+Статус 201 Created
+Формат ответа:
+json
+{
+  "id": 2,
+  "name": "New Site",
+  "created_at": "2024-01-02T12:00:00Z",
+  "user": {
+    "id": 1,
+    "email": "user@example.com"
+  }
+}
+1.3. Получение информации о конкретном сайте
+Метод: GET
+URL: /api/sites/{id}/
+Описание: Получение информации о сайте по его ID.
+Ответ:
+Статус 200 OK
+Формат ответа:
+json
+{
+  "id": 1,
+  "name": "My First Site",
+  "created_at": "2024-01-01T12:00:00Z",
+  "user": {
+    "id": 1,
+    "email": "user@example.com"
+  }
+}
+1.4. Обновление информации о сайте
+Метод: PUT
+URL: /api/sites/{id}/
+Описание: Обновление информации о сайте.
+Тело запроса:
+json
+{
+  "name": "Updated Site Name"
+}
+Ответ:
+Статус 200 OK
+Формат ответа:
+json
+{
+  "id": 1,
+  "name": "Updated Site Name",
+  "created_at": "2024-01-01T12:00:00Z",
+  "user": {
+    "id": 1,
+    "email": "user@example.com"
+  }
+}
+1.5. Частичное обновление информации о сайте
+Метод: PATCH
+URL: /api/sites/{id}/
+Описание: Частичное обновление информации о сайте.
+Тело запроса:
+json
+{
+  "name": "Partially Updated Site Name"
+}
+Ответ:
+Статус 200 OK
+Формат ответа:
+json
+{
+  "id": 1,
+  "name": "Partially Updated Site Name",
+  "created_at": "2024-01-01T12:00:00Z",
+  "user": {
+    "id": 1,
+    "email": "user@example.com"
+  }
+}
+1.6. Удаление сайта
+Метод: DELETE
+URL: /api/sites/{id}/
+Описание: Удаление сайта по его ID.
+Ответ:
+Статус 204 No Content
+
+
+2. Спецификация для PageViewSet
+2.1. Список всех страниц сайта пользователя
+Метод: GET
+URL: /api/pages/
+Описание: Получение списка всех страниц текущего пользователя (именно пользователя от которого делается запрос)
+Ответ:
+Статус 200 OK
+Формат ответа:
+json
+[
+  {
+    "id": 1,
+    "site": 1,
+    "title": "Home Page",
+    "html_content": "<h1>Welcome</h1>",
+    "css_content": "",
+    "js_content": "",
+    "created_at": "2024-01-01T12:00:00Z"
+  },
+  ...
+]
+2.2. Создание новой страницы
+Метод: POST
+URL: /api/pages/
+Описание: Создание новой страницы для сайта текущего пользователя.
+Тело запроса:
+json
+{
+  "site": 1,
+  "title": "New Page",
+  "html_content": "<p>This is a new page.</p>",
+  "css_content": "",
+  "js_content": ""
+}
+Ответ:
+Статус 201 Created
+Формат ответа:
+json
+{
+  "id": 2,
+  "site": 1,
+  "title": "New Page",
+  "html_content": "<p>This is a new page.</p>",
+  "css_content": "",
+  "js_content": "",
+  "created_at": "2024-01-02T12:00:00Z"
+}
+2.3. Получение информации о конкретной странице
+Метод: GET
+URL: /api/pages/{id}/
+Описание: Получение информации о странице по ее ID.
+Ответ:
+Статус 200 OK
+Формат ответа:
+json
+{
+  "id": 1,
+  "site": 1,
+  "title": "Home Page",
+  "html_content": "<h1>Welcome</h1>",
+  "css_content": "",
+  "js_content": "",
+  "created_at": "2024-01-01T12:00:00Z"
+}
+2.4. Обновление информации о странице
+Метод: PUT
+URL: /api/pages/{id}/
+Описание: Обновление информации о странице.
+Тело запроса:
+json
+{
+  "site": 1,
+  "title": "Updated Page Title",
+  "html_content": "<h1>Updated Content</h1>",
+  "css_content": "",
+  "js_content": ""
+}
+Ответ:
+Статус 200 OK
+Формат ответа:
+json
+{
+  "id": 1,
+  "site": 1,
+  "title": "Updated Page Title",
+  "html_content": "<h1>Updated Content</h1>",
+  "css_content": "",
+  "js_content": "",
+  "created_at": "2024-01-01T12:00:00Z"
+}
+2.5. Частичное обновление информации о странице
+Метод: PATCH
+URL: /api/pages/{id}/
+Описание: Частичное обновление информации о странице.
+Тело запроса:
+json
+{
+  "title": "Partially Updated Page Title"
+}
+Ответ:
+Статус 200 OK
+Формат ответа:
+json
+{
+  "id": 1,
+  "site": 1,
+  "title": "Partially Updated Page Title",
+  "html_content": "<h1>Welcome</h1>",
+  "css_content": "",
+  "js_content": "",
+  "created_at": "2024-01-01T12:00:00Z"
+}
+2.6. Удаление страницы
+Метод: DELETE
+URL: /api/pages/{id}/
+Описание: Удаление страницы по ее ID.
+Ответ:
+Статус 204 No Content
